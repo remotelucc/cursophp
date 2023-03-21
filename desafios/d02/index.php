@@ -15,7 +15,7 @@
         $num = mt_rand(0, 100);
         echo "<p>O valor gerado foi <strong>$num</strong></p>"
         ?>
-        <button><a href="index.php">Gerar outro</a></button>
+        <button onclick="javascript:document.location.reload()">Gerar outro</button>
     </main>
 </body>
 </html>
