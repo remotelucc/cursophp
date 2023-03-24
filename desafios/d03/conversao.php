@@ -13,7 +13,11 @@
         <?php 
         $dinheiro = $_POST["dinheiro"];
         $dolar = $dinheiro / 5.29;
-        echo "<p>Seus R$ $dinheiro equivalem a US$ <strong>$dolar</strong></p>"
+        // echo "Seus R\$" . number_format($dinheiro, 2, ",", ".") . " equivalem a US\$" . number_format($dolar, 2, ",", ".")
+
+        $padrao = numfmt_create("pt_BR", NumberFormatter::CURRENCY);
+        echo "Seus " . numfmt_format_currency($padrao, $dinheiro, "BRL") . " equivalem a " . numfmt_format_currency($padrao, $dolar, "USD");
+
         ?>
         <p><strong>*Cotação fixa de R$5,29</strong> informada diretamente no código</p>
         <button><a href="index.html">Voltar</a></button>
