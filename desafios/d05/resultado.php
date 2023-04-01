@@ -12,14 +12,15 @@
         <h1>Analisador de número real</h1>
         <?php 
         $num = $_POST["num"];
-        $int;
-        $frac;
-        echo "<p>Analisando o número <strong>$num</strong> informado pelo usuário:</p>";
+        $int = (int) $num;
+        $frac = $num - $int;
+        echo "Analisando o número ". number_format($num, 3, ",", ".") ." informado pelo usuário:";
         echo "<ul>
-        <li>A parte inteira do número é $int</li>
-        <li>A parte fracionária do número é $frac</li>
+        <li>A parte inteira do número é ". number_format($int, 0, ",", ".") ."</li>
+        <li>A parte fracionária do número é ". number_format($frac, 3, ",", ".") ."</li>
         </ul>";
         ?>
+        <button><a href="index.html">Voltar</a></button>
     </main>
 </body>
 </html>
