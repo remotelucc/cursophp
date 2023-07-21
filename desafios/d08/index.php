@@ -15,7 +15,7 @@
         <h1>Informe um número</h1>
         <form action="<?= $_SERVER['PHP_SELF'] ?>" method="get">
         <label for="numero">Número:</label>
-        <input type="number" name="numero" id="numero" step="0.01">
+        <input type="number" name="numero" id="numero" step="0.001">
         <input type="submit" value="Calcular raízes">
         </form>
     </main>
