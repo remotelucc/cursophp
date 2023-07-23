@@ -9,7 +9,7 @@
 <body>
     <?php 
     $preco = $_REQUEST['preco'] ?? 0;
-    $percentual = $_REQUEST['percentual'];
+    $reaj = $_REQUEST['reaj'] ?? 0;
     $padrao = numfmt_create("pt_BR", NumberFormatter::CURRENCY);
     ?>
     <main>
@@ -17,9 +17,9 @@
 
     <form action="<?= $_SERVER['PHP_SELF'] ?>" method="get">
     <label for="preco">Preço do produto (R$):</label>
-    <input type="number" name="preco" id="preco" step="0.01">
-    <label for="percentual">Qual será o percentual de reajuste? <strong>(<?=$percentual?>%)</strong></label>
-    <input type="range" name="percentual" id="percentual">
+    <input type="number" name="preco" id="preco" step="0.01" value="<?=$preco?>">
+    <label for="percentual">Qual será o percentual de reajuste? (<strong><span id="p">?</span>%</strong>)</label>
+    <input type="range" name="reaj" id="reaj" oninput="mudaValor()" value="<?=$reaj?>">
     <input type="submit" value="Reajustar">
     </form>
 
@@ -27,9 +27,15 @@
     <section>
         <h2>Resultado do reajuste</h2>
         <?php 
-        $reajuste = $preco + ($preco * $percentual)/100;
-        echo "<p>O produto que custava <strong>". numfmt_format_currency($padrao, $preco, "BRL") ."</strong>, com <strong>$percentual% de aumento</strong> vai passar a custar ". numfmt_format_currency($padrao, $reajuste, "BRL") ." a partir de agora.</p>";
+        $aumento = $preco * $reaj / 100;
+        $novo = $preco + $aumento;
+        echo "<p>O produto que custava <strong>". numfmt_format_currency($padrao, $preco, "BRL") ."</strong>, com <strong>$reaj% de aumento</strong> vai passar a custar ". numfmt_format_currency($padrao, $novo, "BRL") ." a partir de agora.</p>";
         ?>
     </section>
+    <script>
+        function mudaValor() {
+            p.innerText = reaj.value;
+        }
+    </script>
 </body>
 </html>
